@@ -6,11 +6,10 @@ spring:
       enabled: true
       discovery:
         enabled: true
-        service-id: CONFIG  #1、指定Config Server的服务名，将会通过Eureka Server发现Config Server。在开发环境下使用hsqldb：（Config Server下的person.yml）；
-        
+        service-id: CONFIG #1、指定ConfigServer的服务名，将会通过EurekaServer发现ConfigServer
 eureka:
   instance:
     non-secure-port: ${server.port:8082}
   client:
     service-url:
-      defaultZone:  http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/

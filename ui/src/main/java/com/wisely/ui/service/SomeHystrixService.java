@@ -8,15 +8,16 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @Service
 public class SomeHystrixService {
+
 	@Autowired
-	RestTemplate restTemplate;	//1、在SpringBoot下使用Ribbon，我们只需注入一个RestTemplate即可，SpringBoot已为我们做好了配置
-	
-	@HystrixCommand(fallbackMethod = "fallbackSome")	//2、使用@HystrixCommand的fallbackMethod参数指定，当本方法调用失败时调用后备方法fallbackSome
+	RestTemplate restTemplate; //1、在SpringBoot下使用Ribbon，我们只需注入一个RestTemplate即可，SpringBoot已为我们做好了配置
+
+	@HystrixCommand(fallbackMethod = "fallbackSome") //2、使用@HystrixCommand的fallbackMethod参数指定，当本方法调用失败时调用后备方法fallbackSome
 	public String getSome() {
 		return restTemplate.getForObject("http://some/getsome", String.class);
 	}
 	
-	public String fallbackSome() {
+	public String fallbackSome(){ 
 		return "some service模块故障";
 	}
 }
